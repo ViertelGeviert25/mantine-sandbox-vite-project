@@ -1,0 +1,17 @@
+.mantine-Notification-root {
+    align-items: flex-start !important;
+}
+
+/* .cms-notification {
+    background-color: #dfebf5;
+    padding: 15px;
+} */
+
+.cms-list-notification {
+    color: black;
+}
+
+.cms-list-notification ul {
+    padding-left: 0;
+    list-style-position: inside;
+}
