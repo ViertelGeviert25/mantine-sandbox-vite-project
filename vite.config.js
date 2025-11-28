@@ -8,8 +8,8 @@ export default defineConfig({
         rollupOptions: {
             output: {
                 manualChunks(id) {
-                    if (id.includes("antd")) {
-                        return "antd"; // alles aus Ant Design kommt in "antd.[hash].js"
+                    if (id.includes("mantine")) {
+                        return "mantine"; // alles aus Ant Design kommt in "antd.[hash].js"
                     }
                     // if (id.includes("node_modules")) {
                     //     return "vendor"; // alles andere aus node_modules in "vendor.[hash].js"
