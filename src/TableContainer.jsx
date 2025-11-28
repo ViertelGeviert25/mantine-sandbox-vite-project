@@ -5,14 +5,57 @@ import { useNotification } from "./useNotifications";
 const TableContainer = () => {
     const notification = useNotification();
 
-    const handleBtnClick = useCallback(() => {
-        notification.showNotification([null, "   ", undefined, "gj sf   "]);
-    }, [notification]);
-
     return (
-        <Button variant="filled" onClick={handleBtnClick}>
-            Click Me!
-        </Button>
+        <div>
+            <Button
+                variant="filled"
+                onClick={() => {
+                    notification.showInfo(
+                        [null, "   ", undefined, "gj sf   "],
+                        "",
+                        true
+                    );
+                }}
+            >
+                Info
+            </Button>
+            <Button
+                variant="filled"
+                onClick={() => {
+                    notification.showSuccess(
+                        [null, "   ", undefined, "gj sf   "],
+                        "",
+                        true
+                    );
+                }}
+            >
+                Success
+            </Button>
+            <Button
+                variant="filled"
+                onClick={() => {
+                    notification.showWarning(
+                        [null, "   ", undefined, "gj sf   "],
+                        "",
+                        true
+                    );
+                }}
+            >
+                Warning
+            </Button>
+            <Button
+                variant="filled"
+                onClick={() => {
+                    notification.showError(
+                        [null, "   ", undefined, "gj sf   "],
+                        "",
+                        true
+                    );
+                }}
+            >
+                Error
+            </Button>
+        </div>
     );
 };
 
