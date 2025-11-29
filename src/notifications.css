@@ -1,6 +1,11 @@
-.mantine-Notification-root {
-    align-items: flex-start !important;
+.mantine-Notification-closeButton {
+    /* align-items: flex-start !important; */
+    align-self: flex-start !important;
     /* padding-bottom: unset !important; */
+}
+
+.mantine-Notification-icon {
+    align-self: flex-start !important;
 }
 
 .cms-list-notification {
@@ -14,7 +19,14 @@
     list-style-position: inside;
 }
 
+/* mantine-Notification-closeButton */
+
 .cms-notification-progress {
     margin-top: 12px;
     /* margin-bottom: -2px; */
+}
+
+.mantine-Notification-body {
+    /* display: flex !important; */
+    /* justify-items: center; */
 }

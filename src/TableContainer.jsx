@@ -11,8 +11,11 @@ const TableContainer = () => {
                 variant="filled"
                 onClick={() => {
                     notification.showInfo(
-                        [null, "   ", undefined, "gj sf   "],
-                        "",
+                        [
+                            "ving quite a bit of trouble as changing the default prop size for the closeButtonProps doesn't seem to behave the same way the individual close button does. My screenshot below ",
+                            "next",
+                        ],
+                        "dfg",
                         true
                     );
                 }}

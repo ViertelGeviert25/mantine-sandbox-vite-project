@@ -100,7 +100,7 @@ export const useNotification = () => {
               )
             : [];
 
-        if (notificationArr.length === 0) {
+        if (Array.isArray(notificationObj) && notificationArr.length === 0) {
             return;
         }
 
@@ -173,9 +173,11 @@ export const useNotification = () => {
                     return null;
             }
         };
+        let showProgress = true;
 
         const getMessage = () => {
             if (typeof notificationObj === "string") {
+                showProgress = false;
                 return notificationObj;
             }
             if (Array.isArray(notificationObj) && notificationArr.length > 1) {
@@ -202,12 +204,13 @@ export const useNotification = () => {
             message: (
                 <div className="cms-list-notification">
                     {getMessage()}
-                    {autoClose ? (
-                        <NotificationWithProgress
-                            duration={5000}
-                            id={notificationId}
-                        />
-                    ) : null}
+                    {autoClose && showProgress
+                        ? // <NotificationWithProgress
+                          //     duration={5000}
+                          //     id={notificationId}
+                          // />
+                          null
+                        : null}
                 </div>
             ),
             style: {
@@ -216,6 +219,8 @@ export const useNotification = () => {
                 borderRadius: "14px",
             },
             color: getColor(),
+            // closeButtonProps: { iconSize: 10 },
+            // loaderProps: { iconSize: 10 },
 
             // https://icons.getbootstrap.com/icons/info-circle-fill/
             icon: getIcon(),
