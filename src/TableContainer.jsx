@@ -6,16 +6,24 @@ const TableContainer = () => {
     const notification = useNotification();
 
     return (
-        <div>
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                rowGap: "1em",
+                alignItems: "center",
+            }}
+        >
             <Button
                 variant="filled"
                 onClick={() => {
                     notification.showInfo(
-                        [
-                            "ving quite a bit of trouble as changing the default prop size for the closeButtonProps doesn't seem to behave the same way the individual close button does. My screenshot below ",
-                            "next",
-                        ],
-                        "dfg",
+                        // [
+                        //     "ving quite a bit of trouble as changing the default prop size for the closeButtonProps doesn't seem to behave the same way the individual close button does. My screenshot below ",
+                        //     "next",
+                        // ],
+                        "msg",
+                        "titleee",
                         true
                     );
                 }}

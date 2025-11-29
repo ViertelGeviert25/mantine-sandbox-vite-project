@@ -1,32 +1,36 @@
-.mantine-Notification-closeButton {
-    /* align-items: flex-start !important; */
-    align-self: flex-start !important;
-    /* padding-bottom: unset !important; */
-}
-
-.mantine-Notification-icon {
-    align-self: flex-start !important;
-}
-
 .cms-list-notification {
     color: black;
 }
 
 .cms-list-notification ul {
-    /* padding: 0; */
     padding-left: 0;
     margin: 0;
     list-style-position: inside;
 }
 
-/* mantine-Notification-closeButton */
-
-.cms-notification-progress {
-    margin-top: 12px;
-    /* margin-bottom: -2px; */
+.notification-root {
+    background-color: #f5f5f5 !important;
+    padding: 10px 15px 10px 15px !important;
+    border-radius: 14px !important;
 }
 
-.mantine-Notification-body {
-    /* display: flex !important; */
-    /* justify-items: center; */
+.notification-root .mantine-Notification-closeButton {
+    align-self: flex-start;
+}
+
+.notification-root .mantine-Notification-icon {
+    align-self: flex-start;
+    height: 24px;
+    width: 24px;
+}
+
+.notification-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.notification-progress .mantine-Progress-root {
+    border-radius: 0;
 }

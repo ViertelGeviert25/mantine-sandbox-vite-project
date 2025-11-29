@@ -13,6 +13,57 @@ const NOTIFICATION_TYPE = {
     ERROR: "error",
 };
 
+const ERR_MSGS = {
+    HTML_ELEM_NOT_FOUND: "Notification element not found",
+};
+
+const icons = {
+    [NOTIFICATION_TYPE.INFO]: (
+        <svg
+            width="32"
+            height="32"
+            fill="white"
+            className="bi bi-info-circle-fill"
+            viewBox="0 0 16 16"
+        >
+            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+        </svg>
+    ),
+    [NOTIFICATION_TYPE.WARNING]: (
+        <svg
+            width="32"
+            height="32"
+            fill="white"
+            className="bi bi-exclamation-triangle-fill"
+            viewBox="0 0 16 16"
+        >
+            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.553.553 0 0 1-1.1 0z" />
+        </svg>
+    ),
+    [NOTIFICATION_TYPE.ERROR]: (
+        <svg
+            width="32"
+            height="32"
+            fill="white"
+            className="bi bi-exclamation-circle-fill"
+            viewBox="0 0 16 16"
+        >
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+        </svg>
+    ),
+    [NOTIFICATION_TYPE.SUCCESS]: (
+        <svg
+            width="32"
+            height="32"
+            fill="white"
+            className="bi bi-check-circle-fill"
+            viewBox="0 0 16 16"
+        >
+            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
+        </svg>
+    ),
+};
+
 const NotificationWithProgress = ({ id, duration }) => {
     const [progress, setProgress] = useState(100);
     const timer = useRef(null);
@@ -53,7 +104,7 @@ const NotificationWithProgress = ({ id, duration }) => {
     useEffect(() => {
         const notificationBoxElem = document.getElementById(id);
         if (!notificationBoxElem) {
-            console.error("Notification element not found");
+            console.error(ERR_MSGS.HTML_ELEM_NOT_FOUND);
             return;
         }
         notificationBoxElem.addEventListener("mouseenter", pause);
@@ -70,16 +121,13 @@ const NotificationWithProgress = ({ id, duration }) => {
         return () => clearInterval(timer.current);
     }, []);
 
-    return (
-        <Progress
-            size={2}
-            value={progress}
-            className="cms-notification-progress"
-        />
-    );
+    return <Progress size={2} value={progress} />;
 };
 
 export const useNotification = () => {
+    /***
+     * Displays notification.
+     */
     const showNotification = (
         notificationObj,
         title,
@@ -118,61 +166,8 @@ export const useNotification = () => {
                     return "blue";
             }
         };
+        const getIcon = () => icons[type] || null;
 
-        const getIcon = () => {
-            switch (type) {
-                case NOTIFICATION_TYPE.INFO:
-                    return (
-                        <svg
-                            width="32"
-                            height="32"
-                            fill="white"
-                            className="bi bi-info-circle-fill"
-                            viewBox="0 0 16 16"
-                        >
-                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
-                        </svg>
-                    );
-                case NOTIFICATION_TYPE.WARNING:
-                    return (
-                        <svg
-                            width="32"
-                            height="32"
-                            fill="white"
-                            className="bi bi-exclamation-triangle-fill"
-                            viewBox="0 0 16 16"
-                        >
-                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.553.553 0 0 1-1.1 0z" />
-                        </svg>
-                    );
-                case NOTIFICATION_TYPE.ERROR:
-                    return (
-                        <svg
-                            width="32"
-                            height="32"
-                            fill="white"
-                            className="bi bi-exclamation-circle-fill"
-                            viewBox="0 0 16 16"
-                        >
-                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
-                        </svg>
-                    );
-                case NOTIFICATION_TYPE.SUCCESS:
-                    return (
-                        <svg
-                            width="32"
-                            height="32"
-                            fill="white"
-                            className="bi bi-check-circle-fill"
-                            viewBox="0 0 16 16"
-                        >
-                            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                        </svg>
-                    );
-                default:
-                    return null;
-            }
-        };
         let showProgress = true;
 
         const getMessage = () => {
@@ -204,27 +199,24 @@ export const useNotification = () => {
             message: (
                 <div className="cms-list-notification">
                     {getMessage()}
-                    {autoClose && showProgress
-                        ? // <NotificationWithProgress
-                          //     duration={5000}
-                          //     id={notificationId}
-                          // />
-                          null
-                        : null}
+                    {autoClose && showProgress ? (
+                        <div className="notification-progress">
+                            <NotificationWithProgress
+                                duration={5000}
+                                id={notificationId}
+                            />
+                        </div>
+                    ) : null}
                 </div>
             ),
-            style: {
-                backgroundColor: "white",
-                padding: "15px",
-                borderRadius: "14px",
+            classNames: {
+                root: "notification-root",
+                body: "notification-body",
             },
             color: getColor(),
-            // closeButtonProps: { iconSize: 10 },
-            // loaderProps: { iconSize: 10 },
-
             // https://icons.getbootstrap.com/icons/info-circle-fill/
             icon: getIcon(),
-            autoClose: false, // we control autoClose ourself
+            autoClose: autoClose ? 7000 : false, // we control autoClose ourself
             withBorder: true,
         });
     };
