@@ -4,7 +4,7 @@ import { notifications } from "@mantine/notifications";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Progress } from "@mantine/core";
 import { hideNotification } from "@mantine/notifications";
-import "./notifications.css";
+import "./useNotifications.css";
 
 const NOTIFICATION_TYPE = {
     INFO: "info",
