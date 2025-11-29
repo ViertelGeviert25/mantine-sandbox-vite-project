@@ -58,8 +58,8 @@ const TableContainer = () => {
                 variant="filled"
                 onClick={() => {
                     notification.showError(
-                        [null, "   ", undefined, "gj sf   "],
-                        "",
+                        [null, " g  ", undefined, "gj sf   "],
+                        "Paste Issues",
                         true
                     );
                 }}
