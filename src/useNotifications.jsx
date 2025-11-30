@@ -172,7 +172,7 @@ export const useNotification = () => {
 
         const getMessage = () => {
             if (typeof notificationObj === "string") {
-                showProgress = false;
+                // showProgress = false;
                 return notificationObj;
             }
             if (Array.isArray(notificationObj) && notificationArr.length > 1) {

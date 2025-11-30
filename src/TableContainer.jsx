@@ -1,9 +1,33 @@
-import { Button } from "@mantine/core";
+import { Button, Text } from "@mantine/core";
 import React, { useCallback } from "react";
 import { useNotification } from "./useNotifications";
+import { modals } from "@mantine/modals";
 
 const TableContainer = () => {
     const notification = useNotification();
+
+    const openDeleteModal = useCallback(() => {
+        modals.openConfirmModal({
+            title: "Delete your profile",
+            centered: true,
+            children: (
+                <Text size="sm">
+                    Are you sure you want to delete your profile? This action is
+                    destructive and you will have to contact support to restore
+                    your data.
+                </Text>
+            ),
+            labels: { confirm: "Delete account", cancel: "No don't delete it" },
+            confirmProps: { color: "red" },
+            onCancel: () => {
+                console.log("Cancel");
+            },
+            onConfirm: () => {
+                console.log("Confirmed");
+                notification.showSuccess("Deleted account");
+            },
+        });
+    }, [modals, notification]);
 
     return (
         <div
@@ -14,16 +38,19 @@ const TableContainer = () => {
                 alignItems: "center",
             }}
         >
+            <Button onClick={openDeleteModal} color="red">
+                Delete account
+            </Button>
             <Button
                 variant="filled"
                 onClick={() => {
                     notification.showInfo(
-                        [
-                            "ving quite a bit of trouble as changing the default prop size for the closeButtonProps doesn't seem to behave the same way the individual close button does. My screenshot below ",
-                            "next",
-                        ],
-                        // "msg",
-                        "titleee",
+                        // [
+                        //     "ving quite a bit of trouble as changing the default prop size for the closeButtonProps doesn't seem to behave the same way the individual close button does. My screenshot below ",
+                        //     "next",
+                        // ],
+                        "msg",
+                        // "titleee",
                         true
                     );
                 }}

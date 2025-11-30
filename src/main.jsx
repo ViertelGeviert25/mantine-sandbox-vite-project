@@ -8,12 +8,15 @@ import "@mantine/core/styles.css";
 // ‼️ import notifications styles after core package styles
 import "@mantine/notifications/styles.css";
 import { Notifications } from "@mantine/notifications";
+import { ModalsProvider } from "@mantine/modals";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
         <MantineProvider>
-            <Notifications containerWidth={"40vw"} />
-            <App />
+            <ModalsProvider>
+                <Notifications containerWidth={"40vw"} />
+                <App />
+            </ModalsProvider>
         </MantineProvider>
     </StrictMode>
 );
