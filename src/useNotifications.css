@@ -2,6 +2,10 @@
     background-color: #f5f5f5 !important;
     padding: 10px 15px 10px 15px !important;
     border-radius: 14px !important;
+
+    max-height: 40vh !important;
+    overflow-y: auto !important;
+    align-items: flex-start !important;
 }
 
 .notification-root .mantine-Notification-closeButton {

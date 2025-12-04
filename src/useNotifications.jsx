@@ -137,6 +137,9 @@ export const useNotification = () => {
         // use built-in mantine random string generator function
         const notificationId = randomId();
 
+        let showProgress = true;
+        let lastScroll = 0;
+
         if (String(notificationObj ?? "").trim().length === 0) {
             return;
         }
@@ -168,8 +171,6 @@ export const useNotification = () => {
         };
         const getIcon = () => icons[type] || null;
 
-        let showProgress = true;
-
         const getMessage = () => {
             if (typeof notificationObj === "string") {
                 // showProgress = false;
@@ -192,6 +193,27 @@ export const useNotification = () => {
             }
         };
 
+        const handleScroll = (evt) => {
+            const scrollTop = evt.currentTarget.scrollTop;
+            const delta = scrollTop - lastScroll; //.current;
+
+            const progressElem = document.querySelector(
+                `.notification-progress-${notificationId}`
+            );
+            // read out current bottom value
+            const progressElemCurrentBottom = parseInt(
+                window.getComputedStyle(progressElem).bottom,
+                10
+            );
+
+            // set new value
+            progressElem.style.bottom = `${
+                progressElemCurrentBottom - delta
+            }px`;
+
+            lastScroll = scrollTop;
+        };
+
         notifications.show({
             id: notificationId,
             title: title,
@@ -200,7 +222,9 @@ export const useNotification = () => {
                 <div className="cms-list-notification">
                     {getMessage()}
                     {autoClose && showProgress ? (
-                        <div className="notification-progress">
+                        <div
+                            className={`notification-progress notification-progress-${notificationId}`}
+                        >
                             <NotificationWithProgress
                                 duration={5000}
                                 id={notificationId}
@@ -213,6 +237,7 @@ export const useNotification = () => {
                 root: "notification-root",
                 body: "notification-body",
             },
+            onScroll: handleScroll,
             color: getColor(),
             // https://icons.getbootstrap.com/icons/info-circle-fill/
             icon: getIcon(),
