@@ -2,8 +2,9 @@ import { Button, Text } from "@mantine/core";
 import React, { useCallback } from "react";
 import { useNotification } from "./useNotifications";
 import { modals } from "@mantine/modals";
+import "./notify-center.css";
 
-const TableContainer = () => {
+const NotifyCenter = () => {
     const notification = useNotification();
 
     const openDeleteModal = useCallback(() => {
@@ -30,14 +31,7 @@ const TableContainer = () => {
     }, [modals, notification]);
 
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                rowGap: "1em",
-                alignItems: "center",
-            }}
-        >
+        <div className="notify-center">
             <Button onClick={openDeleteModal} color="red">
                 Delete account
             </Button>
@@ -45,11 +39,14 @@ const TableContainer = () => {
                 variant="filled"
                 onClick={() => {
                     notification.showInfo(
-                        // [
-                        //     "ving quite a bit of trouble as changing the default prop size for the closeButtonProps doesn't seem to behave the same way the individual close button does. My screenshot below ",
-                        //     "next",
-                        // ],
-                        "msg",
+                        [
+                            "ving quite a bit of trouble as changing the default prop size for the closeButtonProps doesn't seem to behave the same way the individual close button does. My screenshot below ",
+                            "next",
+                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                        ],
+                        // "msg",
                         // "titleee",
                         true
                     );
@@ -97,7 +94,4 @@ const TableContainer = () => {
     );
 };
 
-{
-    /* <Table columns={columns} dataSource={data} />; */
-}
-export default TableContainer;
+export default NotifyCenter;
