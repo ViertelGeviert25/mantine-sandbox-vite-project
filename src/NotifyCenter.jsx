@@ -3,6 +3,7 @@ import React, { useCallback } from "react";
 import { useNotification } from "./useNotifications";
 import { modals } from "@mantine/modals";
 import "./notify-center.css";
+// import NotificationCenter from "./NotificationCenter";
 
 const NotifyCenter = () => {
     const notification = useNotification();
@@ -90,6 +91,7 @@ const NotifyCenter = () => {
             >
                 Error
             </Button>
+            {/* <NotificationCenter /> */}
         </div>
     );
 };
